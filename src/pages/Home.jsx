@@ -191,8 +191,11 @@ const Home = () => {
         <div className='modalLabel'>Name</div>
         <Input placeholder='Name' type='text' onChange={(event)=>{setName(event.target.value)}}/>
         <div className='modalLabel'>Birthday</div>
-        <DatePicker onChange={(value)=>{setBirthday(typeof value !== 'string' ? value.format('DD.MM.YYYY') : '')}} 
-        inputReadOnly defaultValue={""}
+        <DatePicker 
+          onChange={(value)=>{setBirthday(typeof value !== 'string' ? value.format('DD.MM.YYYY') : '')}} 
+          format={'DD.MM.YYYY'}
+          inputReadOnly 
+          defaultValue={""}
         />
         <div className='modalLabel'>Grade (from 0 to 100)</div>
         <InputNumber min={0} max={100} placeholder='Grade' onChange={(value)=>{setGrade(value)}}/>
@@ -210,14 +213,18 @@ const Home = () => {
         <div className='modalLabel'>Name</div>
         <Input placeholder='Name' type='text' defaultValue={user.name} onChange={(event)=>{setNewName(event.target.value)}}/>
         <div className='modalLabel'>Birthday</div>
-        <DatePicker onChange={(value)=>{setNewBirthday(value !== null ? value.format('DD.MM.YYYY') : '')}} allowClear={false}
-        inputReadOnly defaultValue={typeof user.birthday === 'string' && user.birthday !== '' ? dayjs(user.birthday, 'DD.MM.YYYY'): ''} 
+        <DatePicker 
+          onChange={(value)=>{setNewBirthday(value !== null ? value.format('DD.MM.YYYY') : '')}} 
+          allowClear={false}
+          inputReadOnly 
+          defaultValue={typeof user.birthday === 'string' && user.birthday !== '' ? dayjs(user.birthday, 'DD.MM.YYYY'): ''}
+          format={'DD.MM.YYYY'}
         />
         <div className='modalLabel'>Grade (from 0 to 100)</div>
         <InputNumber min={0} max={100} placeholder='Grade' onChange={(value)=>{setNewGrade(value)}} defaultValue={user.grade}/>
       </Modal>
       
-      {/* table with data */}
+      {/* table with data */} 
       <div style={{display: 'block', width: '100%', padding: 30}}>
         <h3>Student math grades</h3>
         <Table dataSource={userList} columns={columns} onChange={onChange} rowKey='id' style={{marginTop: '10px'}}/>
